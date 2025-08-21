@@ -23,12 +23,12 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json({ limit: '10mb' }));
+// app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Health check route
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+app.get(['/health','/'], (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toLocaleString() });
 });
 
 // API routes
@@ -40,13 +40,8 @@ app.use('/api/admin', adminRoutes);
 // Error handling middleware (must be last)
 app.use(errorHandler);
 
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
-
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} http://localhost:${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
 });
 

@@ -9,6 +9,6 @@ const router = Router();
 router.get('/', authenticate, getStores);
 router.post('/', authenticate, authorize('ADMIN'), validateCreateStore, handleValidationErrors, createStore);
 router.get('/my-store', authenticate, authorize('STORE_OWNER'), getMyStore);
-router.get('/:id', authenticate, getStoreDetails);
+// router.get('/:id', authenticate, getStoreDetails);
 
 export default router;
