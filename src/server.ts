@@ -19,11 +19,12 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://ratingstore-frontend.vercel.app',
+  // origin:  'http://localhost:5173',
+origin: process.env.FRONTEND_URL || 'https://ratingstore-frontend.vercel.app',
   credentials: true
 }));
 
-// app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // Health check route
@@ -41,7 +42,7 @@ app.use('/api/admin', adminRoutes);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT} http://localhost:${PORT} \n`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
 });
 
